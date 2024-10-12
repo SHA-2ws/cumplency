@@ -1,18 +1,28 @@
 ---
 import BirthdayLayout from "../../layouts/birthday-layout.astro";
 import personManager from "../../person/api";
+import type { IPerson } from "../../person/types";
+import ErrorCard from "../../person/ui/ErrorCard.astro";
 import PersonCard from "../../person/ui/PersonCard.astro";
 
-
-const { id } = Astro.params;
-
-if (!id) {
-    throw new Error("Person not found")
+interface Params {
+    id: string
 }
 
-const person = personManager.getPerson(id)
+const { id } = Astro.params;
+let person: null | IPerson = null 
+
+if (!id) return
+
+try {
+     person = personManager.getPerson(id)
+} catch (err) {
+    Astro.redirect("/birthdays")
+}
 ---
 
-<BirthdayLayout >
-    <PersonCard person={person} />
+<BirthdayLayout transition:persist >
+{
+    person ? <PersonCard {person} /> : <ErrorCard />
+}
 </BirthdayLayout>

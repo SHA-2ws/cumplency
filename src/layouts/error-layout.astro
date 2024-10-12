@@ -46,9 +46,9 @@ const customTransition = {
 	</head>
 	<body class="w-screen m-auto min-w-[530px] overflow-clip ">
 		<main class="flex m-auto  gap-10 max-w-xl flex-col">
-			<CalendarHeader />
 			<fragment transition:animate={customTransition} transition:name="cumple">
 					<slot />
+                   
 			</fragment>
 			
 		</main>

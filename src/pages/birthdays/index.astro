@@ -1,14 +1,12 @@
 ---
-import { slide } from "astro:transitions"
-import BirthdayLayout from "../../layouts/birthday-layout.astro"
-import PersonList from "../../person/ui/PersonList.astro"
-
-
+import { slide } from "astro:transitions";
+import BirthdayLayout from "../../layouts/birthday-layout.astro";
+import PersonList from "../../person/ui/PersonList.astro";
 ---
 
-<BirthdayLayout transition:animate={slide({duration: 0.5})}  transition:name="pages">
-
-    <PersonList />
-
+<BirthdayLayout transition:persist>
+    <section class="grid h-[430px] gap-4">
+        <h1>Proximos</h1>
+        <PersonList />
+    </section>
 </BirthdayLayout>
-

@@ -4,7 +4,7 @@ import BirthdayHeader from "../headers/ui/BirthdayHeader.astro";
 import AvatarGroup from "../person/ui/AvatarGroup.astro";
 ---
 
-<html  lang="es">
+<html    lang="es">
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width" />
@@ -22,51 +22,24 @@ import AvatarGroup from "../person/ui/AvatarGroup.astro";
 		</style>
 		<ViewTransitions />
 	</head>
-	<body  class="w-screen m-auto overflow-hidden">
-		<main class="flex m-auto gap-8 max-w-xl flex-col">
+	<body transition:persist class="w-screen min-w-[530px] m-auto overflow-clip">
+		<main class="flex m-auto gap-10 max-w-xl flex-col">
 			<BirthdayHeader />
+			<fragment class="flex m-auto gap-10 max-w-xl flex-col" transition:name="cumple">
 			<div class="w-full overflow-x-scroll">
-				<section class="flex w-max py-2 gap-2 overflow-x-auto">
+				<section  class="flex w-max py-2 gap-2 overflow-x-auto">
 					<AvatarGroup />
 				</section>
 			</div>
-			<section class="grid h-[430px] gap-4">
+			
 				<slot />
 			</section>
+		</fragment>
 		</main>
 	</body>
 </html>
 
 <style is:global>
-	:root {
-		--sb-track-color: #f1f5f7;
-		--sb-thumb-color: #575f5b;
-		--sb-size: none;
-	}
-
-	*::-webkit-scrollbar {
-		width: var(--sb-size);
-		visibility: hidden;
-		height: var(var(--sb-size));
-	}
-
-	*::-webkit-scrollbar-track {
-		background: var(--sb-track-color);
-		visibility: hidden;
-		border-radius: 1px;
-	}
-
-	*::-webkit-scrollbar-thumb {
-		background: var(--sb-thumb-color);
-		visibility: hidden;
-		border-radius: 1px;
-	}
-
-	@supports not selector(::-webkit-scrollbar) {
-		* {
-			scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
-		}
-	}
 	article {
 		transition: border-radius height 0.6s;
 		interpolate-size: allow-keywords;

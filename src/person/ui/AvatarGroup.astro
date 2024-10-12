@@ -17,11 +17,11 @@ const data = personServices.groupPersonsBy(
             data.map(([month, persons]) => {
                 const moreThanFour = persons.length > 4;
                 return (
-                    <article class="flex max-w-[162px]  flex-auto flex-col gap-2">
+                    <article transition:name={month} class="flex max-w-[162px]  flex-auto flex-col gap-2">
                         <span class="uppercase font-bold text-xl opacity-70">
                             {month.slice(0, 3)}
                         </span>
-                        <ul class="flex  relative">
+                        <ul class="flex relative">
                             {persons
                                 .slice(0, moreThanFour ? 4 : persons.length)
                                 .map((person, i) => {

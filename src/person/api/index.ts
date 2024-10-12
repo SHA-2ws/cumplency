@@ -11,34 +11,7 @@ export class Person implements IPerson {
 
 
 export class PersonManager implements IPersonManager {
-    private persons: IPerson[] = [
-        new Person("", "Yoel", new Date("06/18/2002"), "" ),
-        new Person("", "Yoel1", new Date("09/18/2002"), "" ),
-        new Person("", "Yoel2", new Date("09/18/2002"), "" ),
-        new Person("", "Yoel3", new Date("08/18/2002"), "" ),
-        new Person("", "Yoel4", new Date("10/01/2002"), "" ),
-        new Person("", "Yoel5", new Date("10/18/2002"), "" ),
-        new Person("", "Aaron", new Date("07/25/2002"), "" ),
-        new Person("", "Aaron1", new Date("07/25/2002"), "" ),
-        new Person("", "Titon2", new Date("01/15/2002"), "" ),
-        new Person("", "Titon3", new Date("11/15/2002"), "" ),
-        new Person("", "Titon4", new Date("01/15/2002"), "" ),
-        new Person("", "Aaron2", new Date("07/25/2002"), "" ),
-        new Person("", "Aaron3", new Date("07/25/2002"), "" ),
-        new Person("", "Mati1", new Date("03/08/2002"), "" ),
-        new Person("", "Mati2", new Date("04/08/2002"), "" ),
-        new Person("", "Mati3", new Date("05/08/2002"), "" ),
-        new Person("", "Mati4", new Date("05/08/2002"), "" ),
-        new Person("", "Mati5", new Date("12/08/2002"), "" ),
-        new Person("", "Mati6", new Date("05/08/2002"), "" ),
-        new Person("", "Mati7", new Date("05/08/2002"), "" ),
-         new Person("", "Mati8", new Date("05/08/2002"), "" ),
-         new Person("", "Mati9", new Date("05/08/2002"), "" ),
-         new Person("", "Mati10", new Date("05/08/2002"), "" ),
-        new Person("", "Maty", new Date("02/11/2002"), "" ),
-        new Person("", "Nahuel", new Date("07/25/2002"), "" ),
-        new Person("", "Titon", new Date("01/15/2002"), "" )
-    ]
+    private persons: IPerson[] = []
     addPerson (person: IPerson): void {
         this.persons = [...this.persons, person ]
     }

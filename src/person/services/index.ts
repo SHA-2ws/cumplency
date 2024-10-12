@@ -22,26 +22,40 @@ class PersonServices implements IPersonsServices {
         }
 
         if (groupBy === Group.upcoming) {
-            const currentDate = new Date().getTime() //mayor
-
-            let times: number[] = []
-
-            for (const person of persons) {
-                const timestamp = new Date(person.born_date).getTime()
-                if (currentDate - timestamp >= 0) {
-                    times = [...times, timestamp]
-                } else {
-                    continue
-                }
-            
+           
+            function toStr(date: Date, yearOffset: number = 0) {
+                const year = date.getFullYear() + yearOffset;
+                return `${year}-${date.toISOString().slice(5, 10)}`;
             }
+            
+            const today = toStr(new Date());
+            
+            function findUpcomingBirthdays(persons: IPerson[], currentDate: string, maxCount = 4) {
+                const results = persons.flatMap(person => {
+                    const thisYearBirthday = new Date(person.born_date);
+                    thisYearBirthday.setFullYear(new Date().getFullYear());
+                    const nextYearBirthday = new Date(thisYearBirthday);
+                    nextYearBirthday.setFullYear(thisYearBirthday.getFullYear() + 1);
+            
+                    // Preparar fechas para este año y el próximo y filtrar directamente
+                    return [
+                        { date: toStr(thisYearBirthday), person },
+                        { date: toStr(nextYearBirthday), person }
+                    ].filter(entry => entry.date > currentDate);
+                });
+            
+                // Ordenar las fechas futuras y tomar los primeros 4
+                return results.sort((a, b) => a.date.localeCompare(b.date))
+                              .slice(0, maxCount)
+                              .map(entry => entry.person);
+            }
+            
+            // Llamando a la función
+            const upcomingBirthdays = findUpcomingBirthdays(persons, today);
 
-           times = times.toSorted((a, b) => b - a).slice(0,4)
-            const upcomingPersons = persons.filter(person => times.includes(new Date(person.born_date).getTime()))
-            personMap.set(Group.upcoming, upcomingPersons)
-            return Array.from(personMap)
-
-
+            // Almacenar en el Map y retornar
+            personMap.set(Group.upcoming, upcomingBirthdays);
+            return Array.from(personMap);
         }
 
         return Array.from(personMap)

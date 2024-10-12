@@ -1,13 +1,12 @@
 ---
 import CalendarLayout from "../../layouts/calendar-layout.astro";
-import { slide } from 'astro:transitions';
 import AvatarGroup from "../../person/ui/AvatarGroup.astro";
 
 ---
 
-<CalendarLayout transition:animate={slide({duration: 0.5})} transition:name="pages">
+<CalendarLayout>
 
-    <section class="grid grid-rows-4 grid-cols-3 gap-16 w-full justify-center items-center h-full">
+    <section class="grid grid-rows-4 grid-cols-3 gap-8 w-full justify-center items-center h-full">
         <AvatarGroup />
     </section>
    

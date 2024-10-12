@@ -2,6 +2,7 @@
 import type { IPerson } from "../types"
 import {XIcon} from "../../icons/ui"
 import {getBirthday, getAgeFrom} from "../functions"
+import Image from "astro/components/Image.astro"
 interface Props {
     person: IPerson
 }
@@ -24,11 +25,11 @@ const customTransition = {
 ---
 
 <section class="relative">
-<a href="/birthdays" class="absolute z-50 top-0 right-0 p-6"><XIcon /></a>
+<a aria-label="volver a los cumples" href="/birthdays" class="absolute z-50 top-0 right-0 p-6"><XIcon /></a>
 <article
 transition:animate={customTransition}
  transition:name={`person-${person.id}`}  class="bg-slate-200/45 flex p-4 rounded-[55px] h-[430px] justify-center flex-col items-center gap-10 ">
-    <img transition:name={`avatar-${person.id}`}  class="w-24 h-24 aspect-square rounded-full" src={person.avatar} alt={person.name}/>
+    <Image loading={"eager"} width={96} height={96} transition:name={`avatar-${person.id}`}  class="w-24 h-24 aspect-square rounded-full" src={person.avatar} alt={person.name}/>
    <div transition:name={`info-${person.id}`}  class="flex justify-center flex-col items-center gap-2">
     <h1 class="font-bold">{person.name}</h1>
     <p  class="capitalize opacity-45 ">{getBirthday(person.born_date)}</p>
