@@ -1,0 +1,22 @@
+---
+import personManager from "../../person/api"
+import PersonPill from "../../person/ui/PersonPill.astro"
+import personServices from "../services"
+import { Group } from "../types"
+const persons = personManager.getPersons()
+
+const data = personServices.groupPersonsBy(persons, Group.upcoming)[0][1]
+
+console.log({data})
+
+---
+
+<>
+{
+    data.map((person) => {
+        return (
+            <PersonPill person={person} />
+        )
+    })
+}
+</>

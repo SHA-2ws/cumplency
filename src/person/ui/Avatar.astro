@@ -1,0 +1,14 @@
+---
+import type { IPerson } from '../types'
+
+interface Props {
+    person: IPerson,
+    className: string
+    index: number
+}
+
+const { person, className, index } = Astro.props
+
+---
+
+<img style={`translate: -${index * 10}px`} class={`${className} w-12 h-12 aspect-square rounded-full`} src={person.avatar} alt={person.name}/>

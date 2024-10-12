@@ -1,0 +1,82 @@
+---
+import { ViewTransitions } from "astro:transitions";
+import BirthdayHeader from "../headers/ui/BirthdayHeader.astro";
+import AvatarGroup from "../person/ui/AvatarGroup.astro";
+---
+
+<html  lang="es">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<style>
+			html,
+			body {
+				font-family: system-ui;
+				margin: 0;
+			}
+			body {
+				padding: 2rem;
+			}
+		</style>
+		<ViewTransitions />
+	</head>
+	<body  class="w-screen m-auto overflow-hidden">
+		<main class="flex m-auto gap-8 max-w-xl flex-col">
+			<BirthdayHeader />
+			<div class="w-full overflow-x-scroll">
+				<section class="flex w-max py-2 gap-2 overflow-x-auto">
+					<AvatarGroup />
+				</section>
+			</div>
+			<section class="grid h-[430px] gap-4">
+				<slot />
+			</section>
+		</main>
+	</body>
+</html>
+
+<style is:global>
+	:root {
+		--sb-track-color: #f1f5f7;
+		--sb-thumb-color: #575f5b;
+		--sb-size: none;
+	}
+
+	*::-webkit-scrollbar {
+		width: var(--sb-size);
+		visibility: hidden;
+		height: var(var(--sb-size));
+	}
+
+	*::-webkit-scrollbar-track {
+		background: var(--sb-track-color);
+		visibility: hidden;
+		border-radius: 1px;
+	}
+
+	*::-webkit-scrollbar-thumb {
+		background: var(--sb-thumb-color);
+		visibility: hidden;
+		border-radius: 1px;
+	}
+
+	@supports not selector(::-webkit-scrollbar) {
+		* {
+			scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
+		}
+	}
+	article {
+		transition: border-radius height 0.6s;
+		interpolate-size: allow-keywords;
+	}
+	@keyframes wide {
+		from {
+			height: 96px;
+		}
+		to {
+			height: 100%;
+		}
+	}
+</style>

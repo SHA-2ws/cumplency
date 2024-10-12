@@ -1,0 +1,59 @@
+---
+import type { IPerson } from "../types";
+import { getBirthday, getAgeFrom } from "../functions";
+interface Props {
+    person: IPerson;
+}
+
+const { person } = Astro.props;
+const anim = {
+  old: {
+    name: 'wide',
+    direction: 'reverse',
+  },
+  new: {
+    name: 'wide',
+   
+   
+  },
+};
+
+const customTransition = {
+  forwards: anim,
+  backwards: anim,
+};
+---
+
+<a href={`/birthdays/${person.id}`}>
+    <article
+        transition:animate={customTransition}
+        transition:name={`person-${person.id}`}
+        class="bg-slate-200/45 flex h-24  p-4 rounded-full justify-between flex-row items-center gap-10"
+    >
+        <div class="flex flex-row items-center gap-4">
+            <img
+                transition:name={`avatar-${person.id}`}
+                class="w-12 h-12 aspect-square rounded-full"
+                src={person.avatar}
+                alt={person.name}
+            />
+            <div
+                transition:name={`info-${person.id}`}
+                class="flex justify-center flex-col items-start gap-2"
+            >
+                <h1 class="font-bold">{person.name}</h1>
+                <p class="capitalize opacity-45">
+                    {getBirthday(person.born_date)}
+                </p>
+            </div>
+        </div>
+
+        <p transition:name={`age-${person.id}`} class="font-bold">
+            {getAgeFrom(person.born_date)} a
+        </p>
+    </article>
+</a>
+
+<style>
+   
+</style>
