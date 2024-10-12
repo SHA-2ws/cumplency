@@ -1,5 +1,5 @@
 import pkg from '@iconscout/react-unicons';
-const { UilX, UilCalendarAlt, UilListUl, UilExclamationOctagon, UilArrowLeft } = pkg;
+const {UilFocusAdd , UilX, UilCalendarAlt, UilListUl, UilExclamationOctagon, UilArrowLeft } = pkg;
 
 export function XIcon() {
     return (
@@ -16,6 +16,12 @@ export function GridListIcon () {
 export function ListIcon () {
     return (
         <UilListUl />
+    )
+}
+
+export function AddIcon () {
+    return (
+        <UilFocusAdd />
     )
 }
 

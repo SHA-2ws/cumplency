@@ -9,14 +9,16 @@ import vercel from '@astrojs/vercel/serverless';
 // https://astro.build/config
 export default defineConfig({
   // Enable React to support React JSX components.
-  integrations: [react(), tailwind()],
-  redirects: 
-    {
-       '/': {
-        destination: '/birthdays',
-        status: 302,
-       }
+  integrations: [react(), tailwind({
+    applyBaseStyles: false,
+  }),],
+  redirects:
+  {
+    '/': {
+      destination: '/birthdays',
+      status: 302,
     }
+  }
   ,
   output: 'server',
   adapter: vercel(),

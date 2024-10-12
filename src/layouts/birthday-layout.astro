@@ -2,6 +2,7 @@
 import { ViewTransitions } from "astro:transitions";
 import BirthdayHeader from "../headers/ui/BirthdayHeader.astro";
 import AvatarGroup from "../person/ui/AvatarGroup.astro";
+import "../styles/global.css"
 ---
 
 <html    lang="es">
@@ -38,18 +39,3 @@ import AvatarGroup from "../person/ui/AvatarGroup.astro";
 		</main>
 	</body>
 </html>
-
-<style is:global>
-	article {
-		transition: border-radius height 0.6s;
-		interpolate-size: allow-keywords;
-	}
-	@keyframes wide {
-		from {
-			height: 96px;
-		}
-		to {
-			height: 100%;
-		}
-	}
-</style>
